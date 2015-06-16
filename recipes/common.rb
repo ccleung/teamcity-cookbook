@@ -10,6 +10,13 @@ user node["teamcity_server"]["user"] do
   shell "/bin/bash"
 end
 
+directory node["teamcity_server"]["ebs_mount"] do
+  owner  node["teamcity_server"]["user"]
+  group  node["teamcity_server"]["group"]
+  mode "0755"
+  action :create
+end
+
 directory node["teamcity_server"]["root_dir"] do
   owner  node["teamcity_server"]["user"]
   group  node["teamcity_server"]["group"]
