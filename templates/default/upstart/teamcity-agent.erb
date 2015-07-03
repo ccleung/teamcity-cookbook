@@ -16,17 +16,12 @@ setgid <%= @group %>
 
 script
   export TEAMCITY_DATA_PATH=<%= @data_dir %>
-  if [ -f ~<%= @user %>/.bashrc ]; then
-    . ~<%= @user %>/.bashrc
-  fi
+  
   exec ${dir}bin/agent.sh run
 end script
 
 pre-stop script
   export TEAMCITY_DATA_PATH=<%= @data_dir %>
-  if [ -f ~<%= @user %>/.bashrc ]; then
-    . ~<%= @user %>/.bashrc
-  fi
 
   exec ${dir}bin/agent.sh stop
 end script
